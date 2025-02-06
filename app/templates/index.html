@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Image Scraper</title>
+</head>
+<body>
+    <div class="container">
+        <form method="POST">
+            <input type="url" name="urlLink" placeholder="Paste the URL here" required>
+            <button type="submit" class="btn submit">Search Images</button>
+        </form>
+        <div class="buttons">
+            <form action="{{ url_for('main.clear_images') }}" method="POST">
+                <button type="submit" class="btn clear">Clear images</button>
+            </form>
+            <a href="{{ url_for('main.download_images') }}">
+                <button type="button" class="btn download">Download Images</button>
+            </a>
+        </div>
+        <div class="images">
+            {% for image in images %}
+                <img src="{{ image }}" alt="Imagem" class="image-item">
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
